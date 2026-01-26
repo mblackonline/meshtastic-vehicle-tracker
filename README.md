@@ -10,6 +10,8 @@ GPS vehicle tracking system using Meshtastic LoRa mesh network. Works during int
 - Works when internet is down (mesh continues functioning)
 - Text messaging between vehicles and dispatch
 
+> **NOTE:** This is an experimental proof-of-concept project for testing and learning purposes. It was created with AI assistance. It is a work in progress and may not work reliably.
+
 ## Quick Start
 
 ### Requirements
