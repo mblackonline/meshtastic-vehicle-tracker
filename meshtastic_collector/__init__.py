@@ -1,0 +1,1 @@
+# Meshtastic collector package

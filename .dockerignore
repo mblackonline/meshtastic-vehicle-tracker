@@ -1,0 +1,27 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+*.egg-info/
+
+# Environment
+.env
+
+# Docker
+docker-mosquitto/
+
+# Device configs (contain secrets)
+device-setup/*-config.yaml
+
+# Archive
+archive/
+
+# Documentation
+*.md

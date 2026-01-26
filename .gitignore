@@ -1,0 +1,36 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+
+# Local dotenvs (secrets)
+.env
+.env.postgres
+docker-postgres/.env
+docker-postgres/.env.postgres
+.envcopy
+.env_copy
+
+# Docker runtime data
+docker-mosquitto/data/
+docker-mosquitto/log/
+
+# Logs
+*.log
+
+# IDE/editor
+.vscode/
+.idea/
+
+# Project docs not meant for commit
+troubleshooting
+archive/chat-summary.md
+wismesh-flash-troubleshooting.md
+device-setup/*-config.yaml
+archive/meshtastic-gateway-template_97d6.yaml
+archive/meshtastic-gateway-template_632d.yaml
+*.bkp

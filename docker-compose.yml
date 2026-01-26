@@ -1,0 +1,81 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./docker-mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./docker-mosquitto/data:/mosquitto/data
+      - ./docker-mosquitto/log:/mosquitto/log
+    networks:
+      - fleet-net
+
+  postgres:
+    image: postgres:15
+    container_name: fleet-postgres
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:?POSTGRES_DB must be set}
+      - POSTGRES_USER=${POSTGRES_USER:?POSTGRES_USER must be set}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
+      - TZ=${TZ:-UTC}
+    ports:
+      - "5432:5432"
+    volumes:
+      - fleet_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - fleet-net
+
+  collector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: meshtastic-collector
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      - MQTT_HOST=mosquitto
+      - POSTGRES_HOST=postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mosquitto:
+        condition: service_started
+    networks:
+      - fleet-net
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: fleet-tracker-web
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_HOST=postgres
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - fleet-net
+
+volumes:
+  fleet_pg_data:
+
+networks:
+  fleet-net:
+    driver: bridge

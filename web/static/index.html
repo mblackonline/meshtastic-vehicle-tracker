@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Meshtastic Vehicle Tracker</title>
+        <meta charset='utf-8' />
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <script src="https://unpkg.com/maplibre-gl@^4.7.1/dist/maplibre-gl.js"></script>
+        <link href="https://unpkg.com/maplibre-gl@^4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+
+        <!-- font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+        <!-- local styles -->
+        <link href="/static/css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="app">
+            <div id="header">
+                <div id="text">
+                    <div id="pagename">Meshtastic Vehicle Tracker</div>
+                </div>
+            </div>
+            <div id="map"></div>
+            <div id="footer">
+                <div id="footer-text">
+                    Meshtastic Vehicle Tracking System - MapLibreGL
+                </div>
+            </div>
+        </div>
+        <!-- local scripts -->
+        <script src="/static/js/map.js"></script>
+    </body>
+</html>

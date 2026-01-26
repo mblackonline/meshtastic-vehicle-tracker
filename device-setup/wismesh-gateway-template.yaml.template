@@ -1,0 +1,51 @@
+channel_url: "${CHANNEL_URL}"
+owner: "${GATEWAY_OWNER}"
+owner_short: "${GATEWAY_SHORT}"
+
+config:
+  device:
+    role: CLIENT_MUTE
+  
+  lora:
+    region: US
+    usePreset: true
+    modemPreset: LONG_FAST
+    txPower: 22
+    txEnabled: true
+    sx126xRxBoostedGain: true
+    hopLimit: 3
+    configOkToMqtt: true
+  
+  power:
+    lsSecs: 0
+    minWakeSecs: 0
+    sdsSecs: 4294967295
+    waitBluetoothSecs: 60
+  
+  position:
+    gpsMode: DISABLED
+    positionBroadcastSecs: 0
+    fixedPosition: false
+  
+  network:
+    wifiEnabled: true
+    wifiSsid: "${WIFI_SSID}"
+    wifiPsk: "${WIFI_PASSWORD}"
+    ntpServer: meshtastic.pool.ntp.org
+
+module_config:
+  mqtt:
+    enabled: true
+    address: "${MQTT_HOST}:${MQTT_PORT}"
+    username: ""
+    password: ""
+    root: "${MESHTASTIC_MQTT_ROOT}"
+    encryptionEnabled: false
+    jsonEnabled: true
+    tlsEnabled: false
+    proxyToClientEnabled: false
+    mapReportingEnabled: false
+  
+  telemetry:
+    environmentMeasurementEnabled: false
+    environmentDisplayFahrenheit: true

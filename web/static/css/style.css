@@ -1,0 +1,118 @@
+* {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.maplibregl-popup-content {
+    white-space: pre-line;
+}
+
+#app {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 0;
+}
+#map {
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 56px;                
+}
+
+#footer {
+    background: #004360;
+    bottom: 0;
+    height: 30px;
+    position: absolute;
+    width: 100%;
+    z-index: 99;
+}
+
+#footer-text {
+    color: lightgray;
+    left: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#header {
+    background-color: #edf2f7;
+    display: block;
+    height: 56px;
+    position: relative;
+    width: 100%;
+    z-index: 99;
+}
+
+#header #text {
+    left: 20px;
+    position: absolute;
+    color: #0b5a82;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#pagename {
+    display: inline-block;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+    #footer {
+        font-size: 12px;
+    }
+    #header #text {
+        left: 15px;
+    }
+}
+
+.marker {
+    border: 2px solid #004360;
+    border-radius: 26px;
+    cursor: pointer;
+    height: 26px;
+    text-align: center;
+    width: 26px;
+}
+.marker:hover {
+    height: 32px;
+    width: 32px;
+}
+.marker.cluster {
+    border-color: #0b5a82;
+}
+.marker-inner {
+    background: rgb(253, 183, 54);
+    border-radius: 25px;
+    height: 25px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+}
+.marker.cluster .marker-inner {
+    background: rgb(5, 97, 143);
+}
+.marker-inner-text {
+    font-size: 10px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+}
+.marker.cluster .marker-inner-text {
+    color: #fff;
+    font-weight: bold;
+}
