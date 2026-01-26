@@ -86,20 +86,6 @@ Collector → PostgreSQL
 Web Dashboard
 ```
 
-## Configuration
-
-Edit `.env` file:
-```bash
-POSTGRES_DB=fleet_tracker
-POSTGRES_USER=fleet_user
-POSTGRES_PASSWORD=your_secure_password
-
-MQTT_HOST=192.168.x.x  # Your server's LAN IP
-WIFI_SSID=your_wifi
-WIFI_PASSWORD=your_password
-CHANNEL_URL=your_meshtastic_channel_url
-```
-
 ## Monitoring
 
 ```bash
