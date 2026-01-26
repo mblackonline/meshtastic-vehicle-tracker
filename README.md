@@ -114,10 +114,6 @@ Auto-created tables:
 - `gateways` - Gateway infrastructure
 - `raw_packets` - Debug data
 
-## API
-
-`GET /api/buses` - Returns GeoJSON of latest vehicle positions
-
 ## License
 
 [MIT License](LICENSE)
