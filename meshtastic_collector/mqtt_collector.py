@@ -480,6 +480,9 @@ def handle_text(db: Database, packet: Dict[str, Any]) -> None:
 
 def _route_payload(db: Database, payload: Dict[str, Any]) -> None:
     _ingest_device_info(db, payload)
+    gateway_id = _normalize_node_id(payload.get("viaMqtt"))
+    if gateway_id:
+        db.upsert_gateway(gateway_id)
     decoded = payload.get("decoded", {}) or {}
     portnum = decoded.get("portnum")
     src = payload.get("from")

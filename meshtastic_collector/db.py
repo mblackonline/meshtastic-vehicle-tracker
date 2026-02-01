@@ -63,6 +63,7 @@ class Database:
             location_lon DOUBLE PRECISION,
             location_alt DOUBLE PRECISION,
             installed_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            last_seen TIMESTAMPTZ NOT NULL DEFAULT NOW(),
             notes TEXT
         );
 
@@ -120,6 +121,10 @@ class Database:
         """
 
         self._execute(ddl, ())
+        self._execute(
+            "ALTER TABLE IF EXISTS gateways ADD COLUMN IF NOT EXISTS last_seen TIMESTAMPTZ NOT NULL DEFAULT NOW()",
+            (),
+        )
 
     def upsert_device(self, node_id: str, display_name: Optional[str], hw_model: Optional[str]) -> None:
         query = """
@@ -162,6 +167,15 @@ class Database:
                 Json(data.get("raw_payload")) if data.get("raw_payload") is not None else None,
             ),
         )
+
+    def upsert_gateway(self, gateway_id: str) -> None:
+        query = """
+            INSERT INTO gateways (gateway_id, last_seen)
+            VALUES (%s, NOW())
+            ON CONFLICT (gateway_id) DO UPDATE
+            SET last_seen = NOW();
+        """
+        self._execute(query, (gateway_id,))
 
     def save_raw(self, topic: str, payload: bytes) -> None:
         query = "INSERT INTO raw_packets (topic, payload) VALUES (%s, %s)"
