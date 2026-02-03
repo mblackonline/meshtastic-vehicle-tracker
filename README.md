@@ -12,6 +12,22 @@ GPS vehicle tracking system using Meshtastic LoRa mesh network. Works during int
 
 > **NOTE:** This is an experimental proof-of-concept project for testing and learning purposes. It was created with AI assistance. It is a work in progress and may not work reliably.
 
+## Security Notice
+
+**This is a proof-of-concept for private networks only. Not production-ready.**
+
+**Known Issues:**
+- No authentication (web dashboard, MQTT broker, database)
+- No encryption (HTTP, MQTT, credentials in plain text)
+- All ports exposed to host network
+- No input validation
+
+**Recommended Use:**
+- Appropriate for: Testing, development, private isolated networks
+- Not appropriate for: Production deployments, public internet, security-sensitive operations
+
+For production use, add authentication, TLS encryption, and firewall rules.
+
 ## Quick Start
 
 ### Requirements
